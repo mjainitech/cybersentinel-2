@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------- */
+/* Global base styles                                                     */
+/* ---------------------------------------------------------------------- */
+
+* {
+  border-color: theme("colors.base.border");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: theme("colors.base.DEFAULT");
+  background-image: theme("backgroundImage.grid-glow");
+  background-attachment: fixed;
+}
+
+/* Visible keyboard focus ring everywhere — accessibility floor */
+:focus-visible {
+  outline: 2px solid theme("colors.accent.primary");
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Thin, unobtrusive scrollbars that match the dark surface */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: theme("colors.base.elevated");
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.base.border");
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Reusable component-level utility classes                               */
+/* ---------------------------------------------------------------------- */
+
+@layer components {
+  /* Frosted glass surface used for navbars, sidebars, cards */
+  .glass-panel {
+    @apply bg-base-surface/70 backdrop-blur-xl border border-base-border;
+  }
+
+  /* Standard elevated card surface */
+  .surface-card {
+    @apply bg-base-surface border border-base-border rounded-xl2 shadow-card;
+  }
+
+  /* Gradient text used for emphasis words in headlines */
+  .text-gradient {
+    @apply bg-cta-gradient bg-clip-text text-transparent;
+  }
+}
